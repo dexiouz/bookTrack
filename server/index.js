@@ -7,6 +7,10 @@ const schema = require('./schema/schema');
 
 const app = express()
 
+// allow cross-origin requests
+app.use(cors());
+
+
 // connect to database
 // mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds131914.mlab.com:31914/book-db")
 mongoose.connect("mongodb://localhost:/book-db", { useNewUrlParser: true } );
