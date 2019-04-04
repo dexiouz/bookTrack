@@ -18,9 +18,17 @@ class AddBook extends Component {
   }
   submitForm = (e) => {
     e.preventDefault()
-    this.props.addBookMutation()
+    const {name, genre, authorId} = this.state;
+    this.props.addBookMutation({
+      variables: {
+        name,
+        genre,
+        authorId 
+      }
+    })
   }
   render() {
+    console.log(this.props)
     return (
       <form id="add-book" onSubmit={this.submitForm}>
         <div className="field">
@@ -52,7 +60,8 @@ class AddBook extends Component {
   }
 }
 
+
 export default compose(
-  graphql(getAuthorsQuery, { name: "getAuthorsQuery" }),
-  graphql(addBookMutation, { name: "addBookMutation" })
+  graphql(getAuthorsQuery, {name: "getAuthorsQuery"}),
+  graphql(addBookMutation, { name: "addBookMutation"})
 )(AddBook);
