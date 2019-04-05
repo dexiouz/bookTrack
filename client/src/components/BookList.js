@@ -5,11 +5,19 @@ import { getBooksQuery } from '../queries/queries';
 
 
 class BookList extends Component {
+  state = {
+    selected: null
+  }
   displayBooks() {
     const data = this.props.data;
     return data.loading ? (<div>Loading books...</div>) :
       (
-        data.books.map(book => <li key={book.id} >{book.name}</li>)
+        data.books.map(book => <li 
+          key={book.id} 
+          onClick={(e) => this.setState({ selected: book.id})}
+          >
+          {book.name}
+          </li>)
       )
   }
   render() {
@@ -18,7 +26,7 @@ class BookList extends Component {
         <ul>
           {this.displayBooks()}
         </ul>
-        <BookDetails />
+        <BookDetails bookId={this.state.selected}/>
       </div>
     );
   }
