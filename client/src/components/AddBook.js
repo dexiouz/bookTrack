@@ -28,8 +28,7 @@ class AddBook extends Component {
       refetchQueries: [{ query: getBooksQuery}]
     })
   }
-  render() {
-    console.log(this.props)
+  render() {  
     return (
       <form id="add-book" onSubmit={this.submitForm}>
         <div className="field">
